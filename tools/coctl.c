@@ -77,7 +77,7 @@ struct co_net {
 
 #define POLL_TIMEOUT 10
 
-int can_send(const struct can_msg *msg, void *data);
+int can_send(const struct can_msg *msg, uint_least8_t bus_id, void *data);
 
 int gw_send(const struct co_gw_srv *srv, void *data);
 void gw_rate(co_unsigned16_t id, co_unsigned16_t rate, void *data);
@@ -521,8 +521,9 @@ error_arg:
 }
 
 int
-can_send(const struct can_msg *msg, void *data)
+can_send(const struct can_msg *msg, uint_least8_t bus_id, void *data)
 {
+	(void)bus_id;
 	io_handle_t handle = (io_handle_t)data;
 
 	return io_can_write(handle, msg) == 1 ? 0 : -1;
