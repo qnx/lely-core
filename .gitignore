@@ -64,3 +64,4 @@ unit-test-*
 *.o
 *.pc
 *.rc
+/.clangd
