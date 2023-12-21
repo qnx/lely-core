@@ -54,7 +54,7 @@
 #define POLL_TIMEOUT 100
 
 int can_recv(const struct can_msg *msg, void *data);
-int can_send(const struct can_msg *msg, void *data);
+int can_send(const struct can_msg *msg, uint_least8_t bus_id, void *data);
 
 int io_thrd_start(void *arg);
 
@@ -334,8 +334,9 @@ can_recv(const struct can_msg *msg, void *data)
 }
 
 int
-can_send(const struct can_msg *msg, void *data)
+can_send(const struct can_msg *msg, uint_least8_t bus_id, void *data)
 {
+	(void)bus_id;
 	io_handle_t handle = (io_handle_t)data;
 
 	return io_can_write(handle, msg) == 1 ? 0 : -1;

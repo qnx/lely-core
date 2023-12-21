@@ -29,6 +29,7 @@
 #include <memory>
 #include <numeric>
 #include <vector>
+#include <array>
 
 #include <CppUTest/TestHarness.h>
 

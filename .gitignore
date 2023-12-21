@@ -41,6 +41,7 @@
 /stamp-h1
 /tap-driver.sh
 /.cache/
+/.clangd
 /.vscode/
 !/.vscode/c_cpp_properties.json
 !/.vscode/settings.json
