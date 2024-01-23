@@ -8,13 +8,10 @@ ARG SONAR_SCANNER_VERSION=5.0.1.3006
 
 RUN apt-get update -q \
         && DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends \
-        ca-certificates \
         curl \
-        git \
-        wget \
         unzip \
-        python3 \
         python3-requests \
+        openjdk-17-jre-headless \
         && rm -rf /var/lib/apt/lists/*
 
 # Download sonar-scanner
