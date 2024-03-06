@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shiplist>
+	<id>com.qnx.${baselineId}.osr.canopen.ecss.lely.core.internal</id>
+	<name>ECSS Lely core library</name>
+	<description>Lely CANopen feature-rich, open-source stack of industrial quality(ECSS compliant)</description>
+	<property key="f.support" value="Custom"/>
+	<property key="f.swtype" value="III"/>
+	<property key="f.engage" value="B"/>
+	<category>OSR</category>
+
+	<property key="com.qnx.internal" value="true"/>
+	<!-- don't generate provides/requires tags for internal packages-->
+	<requires value="suppress-library: autogen"/>
+	<provides value="suppress-library: autogen"/>
+
+	<asset dest="${targetfolder}/usr/include/lely/" runtime="false" />
+	<asset dest="${targetfolder}/[ARCH:aarch64le,x86_64]/usr/lib" 
+		runtime="false">
+		<!-- includes only lely libs -->
+		<include name="liblely*"></include>
+	</asset>
+</shiplist>

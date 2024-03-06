@@ -4,6 +4,10 @@
  *
  * @see lely/util/error.h
  *
+ * @copyright 2023 BlackBerry Limited.
+ *
+ * @author Pavlo Kleymonov <pkleymonov@blackberry.com>
+ *
  * @copyright 2013-2021 Lely Industries N.V.
  *
  * @author J. S. Seldenthuis <jseldenthuis@lely.com>
@@ -1049,7 +1053,7 @@ errno2str_r(int errnum, char *strerrbuf, size_t buflen)
 	}
 #elif _POSIX_C_SOURCE >= 200112L
 	if (strerrbuf) {
-#ifdef _GNU_SOURCE
+#if defined(_GNU_SOURCE) && !defined(__QNX__)
 		return strerror_r(errnum, strerrbuf, buflen);
 #else
 		int errc = strerror_r(errnum, strerrbuf, buflen);
