@@ -2,6 +2,15 @@ ARG __GNUC__
 
 FROM gcc:${__GNUC__}
 
+# support for Debian 8 (GCC <= 6)
+RUN VERSION=$(sed 's/\..*//' /etc/debian_version) \
+    && if [ "$VERSION" -eq "8" ] ; then \
+          echo "deb http://archive.debian.org/debian/ jessie main non-free contrib" > /etc/apt/sources.list ; \
+          echo " deb-src http://archive.debian.org/debian/ jessie main non-free contrib" >> /etc/apt/sources.list ; \
+          echo "deb http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
+          echo " deb-src http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
+       fi
+
 RUN apt-get update -q \
     && DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends \
         cython3 \
