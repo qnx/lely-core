@@ -9,7 +9,11 @@ RUN VERSION=$(sed 's/\..*//' /etc/debian_version) \
           echo " deb-src http://archive.debian.org/debian/ jessie main non-free contrib" >> /etc/apt/sources.list ; \
           echo "deb http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
           echo " deb-src http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
-       fi
+       fi \
+    && apt-get update -q \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends \
+        debian-archive-keyring \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update -q \
     && DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends \
