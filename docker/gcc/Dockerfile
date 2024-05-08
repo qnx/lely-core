@@ -5,11 +5,10 @@ FROM gcc:${__GNUC__}
 # support for Debian 8 (GCC <= 6)
 RUN VERSION=$(sed 's/\..*//' /etc/debian_version) \
     && if [ "$VERSION" -eq "8" ] ; then \
-          echo "deb http://archive.debian.org/debian/ jessie main non-free contrib" > /etc/apt/sources.list ; \
-          echo " deb-src http://archive.debian.org/debian/ jessie main non-free contrib" >> /etc/apt/sources.list ; \
-          echo "deb http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
-          echo " deb-src http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
-          apt-key update -q ; \
+          echo "deb [trusted=yes] http://archive.debian.org/debian/ jessie main non-free contrib" > /etc/apt/sources.list ; \
+    echo " deb-src [trusted=yes] http://archive.debian.org/debian/ jessie main non-free contrib" >> /etc/apt/sources.list ; \
+    echo "deb [trusted=yes] http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
+    echo " deb-src [trusted=yes] http://archive.debian.org/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list ; \
        fi
 
 RUN apt-get update -q \
